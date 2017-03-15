@@ -2,37 +2,23 @@
 using System.Collections;
 
 public class Bullet : MonoBehaviour {
-
+    private GameControl gameControl;
 	// Use this for initialization
 	void Start () {
-	
+        gameControl = GameObject.Find("GameControl").GetComponent<GameControl>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
-    void OnCollisionStay(Collision col)
+    void OnCollisionEnter(Collision col)
     {
-
-        Debug.Log("PENGDAOWUTI");
         if (col.gameObject.tag == "Enemy")//被碰撞的是敌人
         {
             Destroy(col.gameObject);//销毁敌人
-            Destroy(this.gameObject);//销毁子弹
+            gameControl.Score += 1;
         }
-    }
-    void OnControllerColliderHit(Collision col)
-    {
-        Debug.Log("111");
-        if (col.gameObject.tag == "Enemy")//被碰撞的是敌人
-        {
-            Destroy(col.gameObject);//销毁敌人
-            Destroy(this.gameObject);//销毁子弹
-        }
-    }
-    void OnTriggerEnter(Collider col)
-    {
-        Debug.Log("2222");
+        Destroy(this.gameObject);//销毁子弹
     }
 }
