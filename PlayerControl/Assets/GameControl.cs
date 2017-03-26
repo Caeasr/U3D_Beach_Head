@@ -7,6 +7,8 @@ public class GameControl : MonoBehaviour {
     public Transform enemyManage;//实例化后的敌人的父节点
     float time = 0;
     public float timer = 30;//每隔多久产生一个敌人
+    private Button button;
+    private Image image;
     //////////////////人物状态/////////////////
     int score = 0;
     public Text scoreText;
@@ -21,6 +23,9 @@ public class GameControl : MonoBehaviour {
         {
             score = value;
             scoreText.text = "得分：" + value.ToString();
+
+            button.transition = Selectable.Transition.ColorTint;
+
         }
     }
 
